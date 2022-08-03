@@ -1,24 +1,27 @@
-import logo from './logo.svg';
 import './App.css';
+import React, { useState } from "react";
+import { Routes, Route } from "react-router-dom";
+import { RecoilRoot } from "recoil";
+import { Users } from "./components/users.component";
+import { NewUser } from "./components/addUser.component";
+import { User } from "./components/user.component";
+import { UpdateUser } from "./components/updateUser.component";
+
+
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <RecoilRoot>
+      <div className="App">
+        <Routes>
+          <Route exact path="/user" element={<Users />}>
+            <Route path="showUser/:id" element={<User />} />
+            <Route exact path="newUser" element={< NewUser />} />
+            <Route exact path="updateUser/:id" element={< UpdateUser />} />
+          </Route>
+        </Routes>
+      </div>
+    </RecoilRoot>
   );
 }
 
